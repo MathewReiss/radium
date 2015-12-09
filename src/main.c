@@ -9,7 +9,7 @@ Window *my_window;
 #define COLOR_BACKGROUND GColorBlack
 #define COLOR_TEXT GColorWhite
 
-int hour = 6, minute = 35, battery = 70;
+int hour = 0, minute = 0, battery = 100;
 
 void draw_layer(Layer *layer, GContext *ctx){
 	graphics_context_set_fill_color(ctx, COLOR_BACKGROUND);
@@ -28,7 +28,7 @@ void draw_layer(Layer *layer, GContext *ctx){
 	graphics_context_set_fill_color(ctx, COLOR_OUTER_FILLED);
 	
 	//Right Fill
-	graphics_fill_radial(ctx, layer_get_bounds(layer), GOvalScaleModeFitCircle, 4, DEG_TO_TRIGANGLE(180 - 3 - ( (180 - 3 ) * battery ) / 100 ), DEG_TO_TRIGANGLE(180 - 3));
+	graphics_fill_radial(ctx, layer_get_bounds(layer), GOvalScaleModeFitCircle, 4, DEG_TO_TRIGANGLE(180 - ( (180 - 3 ) * battery ) / 100 ), DEG_TO_TRIGANGLE(180 - 3));
 	
 	//Left Fill
 	// ???
@@ -50,12 +50,33 @@ void draw_layer(Layer *layer, GContext *ctx){
 	}
 }
 
+static void tick(struct tm *tick_time, TimeUnits units){
+	hour = tick_time->tm_hour%12;
+	minute = tick_time->tm_min;
+	layer_mark_dirty(window_get_root_layer(my_window));
+}
+
+static void battery_event(BatteryChargeState state){
+	battery = state.charge_percent;
+	layer_mark_dirty(window_get_root_layer(my_window));
+}
+
 void handle_init(void) {
   my_window = window_create();
 
 	layer_set_update_proc(window_get_root_layer(my_window), draw_layer);
 
   window_stack_push(my_window, true);
+	
+	time_t now = time(NULL);
+	struct tm *ltime = localtime(&now);
+	tick(ltime, MINUTE_UNIT);
+	
+	tick_timer_service_subscribe(MINUTE_UNIT, tick);
+	
+	battery_event(battery_state_service_peek());
+	
+	battery_state_service_subscribe(battery_event);
 }
 
 void handle_deinit(void) {
