@@ -1,0 +1,22 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "MathewReiss",
+    "longName": "radium mock",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "radium mock",
+    "targetPlatforms": [
+        "chalk"
+    ],
+    "uuid": "2609e817-f8f2-4ad2-8846-cb05bb67d047",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
