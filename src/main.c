@@ -2,12 +2,13 @@
 
 Window *my_window;
 
-#define COLOR_OUTER_EMPTY GColorDarkGray
-#define COLOR_OUTER_FILLED GColorLightGray
-#define COLOR_TICK_EMPTY GColorDarkGray
-#define COLOR_TICK_FILLED GColorRed
-#define COLOR_BACKGROUND GColorBlack
-#define COLOR_TEXT GColorWhite
+//Default Colors
+GColor COLOR_OUTER_EMPTY = GColorDarkGray;
+GColor COLOR_OUTER_FILLED = GColorLightGray;
+GColor COLOR_TICK_EMPTY = GColorDarkGray;
+GColor COLOR_TICK_FILLED = GColorRed;
+GColor COLOR_BACKGROUND = GColorBlack;
+GColor COLOR_TEXT = GColorWhite;
 
 int hour = 0, minute = 0, battery = 100;
 
@@ -23,8 +24,7 @@ void draw_layer(Layer *layer, GContext *ctx){
 	
 	//Left Arc
 	graphics_fill_radial(ctx, layer_get_bounds(layer), GOvalScaleModeFitCircle, 4, DEG_TO_TRIGANGLE(180 + 3), DEG_TO_TRIGANGLE(360 - 3));
-	
-	/* INNER TICK MARKS */
+
 	graphics_context_set_fill_color(ctx, COLOR_OUTER_FILLED);
 	
 	//Right Fill
@@ -32,23 +32,28 @@ void draw_layer(Layer *layer, GContext *ctx){
 	
 	//Left Fill
 	// ???
-	
+
+	/* INNER TICK MARKS */
 	graphics_context_set_fill_color(ctx, COLOR_TICK_EMPTY);
 	
+	//Minute Ticks
 	for(int i = 0; i < 60; i++){
 		graphics_fill_radial(ctx, GRect(6,6,168,168), GOvalScaleModeFitCircle, 20, DEG_TO_TRIGANGLE(3 + 2*i + 5*(i/5)), DEG_TO_TRIGANGLE(3 + 2*i + 1 + 5*(i/5)));
 	}
 	
+	//Hour Ticks
 	for(int i = 12; i < 24; i++){
 		graphics_fill_radial(ctx, GRect(6,6,168,168), GOvalScaleModeFitCircle, 20, DEG_TO_TRIGANGLE(3 + 15*i), DEG_TO_TRIGANGLE(3 + 9 + 15*i));
 	}
 	
 	graphics_context_set_fill_color(ctx, COLOR_TICK_FILLED);
 	
+	//Minute Fill
 	for(int i = 0; i < minute; i++){
 		graphics_fill_radial(ctx, GRect(6,6,168,168), GOvalScaleModeFitCircle, 20, DEG_TO_TRIGANGLE(3 + 2*i + 5*(i/5)), DEG_TO_TRIGANGLE(3 + 2*i + 1 + 5*(i/5)));
 	}
 	
+	//Hour Fill
 	for(int i = 0; i < hour; i++){
 		graphics_fill_radial(ctx, GRect(6,6,168,168), GOvalScaleModeFitCircle, 20, DEG_TO_TRIGANGLE(180 + 3 + 15*i), DEG_TO_TRIGANGLE(180 + 3 + 15*i + 9));
 	}
