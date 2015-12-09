@@ -35,7 +35,11 @@ void draw_layer(Layer *layer, GContext *ctx){
 	
 	graphics_context_set_fill_color(ctx, COLOR_TICK_EMPTY);
 	
-	for(int i = 0; i < 24; i++){
+	for(int i = 0; i < 60; i++){
+		graphics_fill_radial(ctx, GRect(6,6,168,168), GOvalScaleModeFitCircle, 20, DEG_TO_TRIGANGLE(3 + 2*i + 5*(i/5)), DEG_TO_TRIGANGLE(3 + 2*i + 1 + 5*(i/5)));
+	}
+	
+	for(int i = 12; i < 24; i++){
 		graphics_fill_radial(ctx, GRect(6,6,168,168), GOvalScaleModeFitCircle, 20, DEG_TO_TRIGANGLE(3 + 15*i), DEG_TO_TRIGANGLE(3 + 9 + 15*i));
 	}
 	
