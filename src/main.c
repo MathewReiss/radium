@@ -46,24 +46,24 @@ void draw_layer(Layer *layer, GContext *ctx){
 	
 	//Minute Ticks
 	for(int i = 0; i < 60; i++){
-		graphics_fill_radial(ctx, GRect(8,8,164,164), GOvalScaleModeFitCircle, overlay ? 27 : 82, DEG_TO_TRIGANGLE(3 + 2*i + 5*(i/5)), DEG_TO_TRIGANGLE(3 + 2*i + 1 + 5*(i/5)));
+		graphics_fill_radial(ctx, GRect(8,8,164,164), GOvalScaleModeFitCircle, overlay ? 19 : 82, DEG_TO_TRIGANGLE(3 + 2*i + 5*(i/5)), DEG_TO_TRIGANGLE(3 + 2*i + 1 + 5*(i/5)));
 	}
 	
 	//Hour Ticks
 	for(int i = 12; i < 24; i++){
-		graphics_fill_radial(ctx, GRect(8,8,164,164), GOvalScaleModeFitCircle, overlay ? 27 : 82, DEG_TO_TRIGANGLE(3 + 15*i), DEG_TO_TRIGANGLE(3 + 9 + 15*i));
+		graphics_fill_radial(ctx, GRect(8,8,164,164), GOvalScaleModeFitCircle, overlay ? 19 : 82, DEG_TO_TRIGANGLE(3 + 15*i), DEG_TO_TRIGANGLE(3 + 9 + 15*i));
 	}
 	
 	graphics_context_set_fill_color(ctx, COLOR_TICK_FILLED);
 	
 	//Minute Fill
 	for(int i = 0; i < minute; i++){
-		graphics_fill_radial(ctx, GRect(8,8,164,164), GOvalScaleModeFitCircle, overlay ? 27 : 82, DEG_TO_TRIGANGLE(3 + 2*i + 5*(i/5)), DEG_TO_TRIGANGLE(3 + 2*i + 1 + 5*(i/5)));
+		graphics_fill_radial(ctx, GRect(8,8,164,164), GOvalScaleModeFitCircle, overlay ? 19 : 82, DEG_TO_TRIGANGLE(3 + 2*i + 5*(i/5)), DEG_TO_TRIGANGLE(3 + 2*i + 1 + 5*(i/5)));
 	}
 	
 	//Hour Fill
 	for(int i = 0; i < hour; i++){
-		graphics_fill_radial(ctx, GRect(8,8,164,164), GOvalScaleModeFitCircle, overlay ? 27 : 82, DEG_TO_TRIGANGLE(180 + 3 + 15*i), DEG_TO_TRIGANGLE(180 + 3 + 15*i + 9));
+		graphics_fill_radial(ctx, GRect(8,8,164,164), GOvalScaleModeFitCircle, overlay ? 19 : 82, DEG_TO_TRIGANGLE(180 + 3 + 15*i), DEG_TO_TRIGANGLE(180 + 3 + 15*i + 9));
 	}
 	
 	
