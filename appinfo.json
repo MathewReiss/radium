@@ -7,7 +7,24 @@
     "longName": "radium mock",
     "projectType": "native",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file": "fonts/Roboto-Regular.ttf",
+                "name": "ROBOTO_10",
+                "type": "font"
+            },
+            {
+                "file": "fonts/Roboto-Bold.ttf",
+                "name": "ROBOTO_BOLD_12",
+                "type": "font"
+            },
+            {
+                "characterRegex": "[0-9:]",
+                "file": "fonts/Roboto-Bold.ttf",
+                "name": "ROBOTO_BOLD_33",
+                "type": "font"
+            }
+        ]
     },
     "sdkVersion": "3",
     "shortName": "radium mock",
